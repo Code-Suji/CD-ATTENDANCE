@@ -12,7 +12,7 @@ function(data) {
         e.preventDefault();
         db.collection('attendance').doc(address).set({
             name: form.pname.value,
-            rno: form.rno.value,
+            rno: parseInt(form.rno.value),
             time:Date().toString().substring(0, 24),
             ip:address,
         });
