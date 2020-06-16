@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css">
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+        <style>
+            table { 
+width: 750px; 
+border-collapse: collapse; 
+margin:50px auto;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+background: #eee; 
+}
+
+th { 
+background: #3498db; 
+color: white; 
+font-weight: bold; 
+}
+
+td, th { 
+padding: 10px; 
+border: 1px solid #ccc; 
+text-align: left; 
+font-size: 18px;
+}
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+table { 
+width: 100%; 
+}
+
+/* Force table to not be like tables anymore */
+table, thead, tbody, th, td, tr { 
+display: block; 
+}
+
+/* Hide table headers (but not display: none;, for accessibility) */
+thead tr { 
+position: absolute;
+top: -9999px;
+left: -9999px;
+}
+
+tr { border: 1px solid #ccc; }
+
+td { 
+/* Behave  like a "row" */
+border: none;
+border-bottom: 1px solid #eee; 
+position: relative;
+padding-left: 50%; 
+}
+
+td:before { 
+/* Now like a table header */
+position: absolute;
+/* Top/left values mimic padding */
+top: 6px;
+left: 6px;
+width: 45%; 
+padding-right: 10px; 
+white-space: nowrap;
+/* Label the data */
+content: attr(data-column);
+
+color: #000;
+font-weight: bold;
+}
+
+}
+        </style>
+    </head>
+    <body>
+        <div>
+            <form>
+            <input type="submit" id="regBtn" class="btnreg" value="View">
+        </form>
+            <h1>CD-ATTENDANCE</h1>
+            <div class="container">
+                <div class="tab tab-1">
+                    <table id="table" border="1">
+                        <tr>
+                            <th>ROLL NO</th>
+                            <th>NAME</th>
+                            <th>TIME</th>
+                        </tr>
+</div>
+
+        </div>
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                  apiKey: "AIzaSyBBanoc5fzpu_S1llP-ggdKmtgeGCGEljo",
+                  authDomain: "cd-attendance.firebaseapp.com",
+                  databaseURL: "https://cd-attendance.firebaseio.com",
+                  projectId: "cd-attendance",
+                  storageBucket: "cd-attendance.appspot.com",
+                  messagingSenderId: "1048465872230",
+                  appId: "1:1048465872230:web:c589d97627dba89585a4a7",
+                  measurementId: "G-TKEXE8KS1F"
+          
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            const cafeList = document.querySelector('#cafe-list');
+var c=0;
+function addHtmlTableRow(doc,c)
+            {
+                // get the table by id
+                // create a new row and cells
+                // get value from input text
+                // set the values into row cell's
+                var newRow = table.insertRow(table.length),
+                    cell1 = newRow.insertCell(0),
+                    cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2);
+            
+                cell1.innerHTML = doc.data().rno;
+                cell2.innerHTML = doc.data().name;
+                cell3.innerHTML = doc.data().time;
+                // call the function to set the event to the new row
+                //selectedRowToInput();
+            }
+db.collection('attendance').orderBy('rno').get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+        c++;
+        addHtmlTableRow(doc,c);
+     });
+});
+          </script>
+    </body>
+</html>
