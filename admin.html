@@ -92,9 +92,11 @@ font-weight: bold;
                 <div class="tab tab-1">
                     <table id="table" border="1">
                         <tr>
+                            
                             <th>ROLL NO</th>
                             <th>NAME</th>
                             <th>TIME</th>
+                            <th>COUNT</th>
                         </tr>
 </div>
 
@@ -126,11 +128,15 @@ function addHtmlTableRow(doc,c)
                 var newRow = table.insertRow(table.length),
                     cell1 = newRow.insertCell(0),
                     cell2 = newRow.insertCell(1),
-                    cell3 = newRow.insertCell(2);
-            
+                    cell3 = newRow.insertCell(2),
+                    cell4 = newRow.insertCell(3);
+                
+                
                 cell1.innerHTML = doc.data().rno;
                 cell2.innerHTML = doc.data().name;
                 cell3.innerHTML = doc.data().time;
+                cell4.innerHTML = c;
+                
                 // call the function to set the event to the new row
                 //selectedRowToInput();
             }
