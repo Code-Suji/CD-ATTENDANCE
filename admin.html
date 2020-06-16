@@ -8,7 +8,22 @@ width: 750px;
 border-collapse: collapse; 
 margin:50px auto;
 }
-
+            button{
+    cursor: pointer;
+    width: 40%;
+    box-sizing: border-box;
+    border: 2px solid rgba(151, 0, 0, 0.212);
+    border-radius: 5px;
+    font-size: 15px;
+    color: white;
+    background-color: rgba(150, 0, 0, 0.63);
+    font-family: 'Bebas Neue', cursive;
+    align-items: center;
+    margin-bottom: 15px;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 10px 20px 10px 17px;
+    }
 /* Zebra striping */
 tr:nth-of-type(odd) { 
 background: #eee; 
@@ -83,10 +98,11 @@ font-weight: bold;
     </head>
     <body>
         <div>
-            <form style="visibility: hidden">
+            <form>
             <input type="submit" id="regBtn" class="btnreg" value="View">
         </form>
             <h1>CD-ATTENDANCE</h1>
+            <button onclick="window.print()">print</button>
             <div class="container">
                 <div class="tab tab-1">
                     <table id="table" border="1">
