@@ -8,7 +8,7 @@ function(data) {
     var address= data.ip;
     
     form.addEventListener('submit', (e) => {
-        alert("You will be notified when round four goes live");
+        alert("Keep calm and study🤫");
         e.preventDefault();
         db.collection('attendance').doc(address).set({
             name: form.pname.value,
