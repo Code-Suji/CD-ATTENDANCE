@@ -150,13 +150,16 @@ db.collection('attendance').orderBy('rno').get().then(snapshot => {
 });
             document.getElementById("del").addEventListener("click", Deldata);
 function Deldata(){
-    db.collection('attendance').orderBy('rno').get().then(snapshot => {
+    if (confirm('Are you sure you want to delete this details from the database?')) {
+  db.collection('attendance').orderBy('rno').get().then(snapshot => {
     snapshot.docs.forEach(doc => {
         db.collection("attendance").doc(doc.id).delete();
+        alert("All data deleted");
      });
 });
-alert("All data deleted")
-    
+} else {
+    alert("Deletion canceled");
+}   
 }
           </script>
     </body>
