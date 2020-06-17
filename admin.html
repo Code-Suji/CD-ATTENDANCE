@@ -87,7 +87,9 @@ font-weight: bold;
             <form>
             <input type="submit" id="regBtn" class="btnreg" value="View">
         </form>
-            <button onclick="window.print()">print</button>
+            <button onclick="window.print()">Print</button>
+            <button id="del">Reset</button>
+            
             <div class="container">
                 <div class="tab tab-1">
                     <table id="table" border="1">
@@ -146,6 +148,16 @@ db.collection('attendance').orderBy('rno').get().then(snapshot => {
         addHtmlTableRow(doc,c);
      });
 });
+            document.getElementById("del").addEventListener("click", Deldata);
+function Deldata(){
+    db.collection('attendance').orderBy('rno').get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+        db.collection("attendance").doc(doc.id).delete();
+     });
+});
+alert("All data deleted")
+    
+}
           </script>
     </body>
 </html>
