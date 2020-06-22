@@ -8,7 +8,6 @@ function(data) {
     var address= data.ip;
     
     form.addEventListener('submit', (e) => {
-        alert("Keep calm and study🤫");
         e.preventDefault();
         db.collection('attendance').doc(address).set({
             name: form.pname.value,
@@ -19,6 +18,7 @@ function(data) {
         form.name.value = '';
         form.rno.value = '';
         //window.location.replace("hunt1.html");
+        alert("Your attendance marked successfully ");
     });
 
 }) 
